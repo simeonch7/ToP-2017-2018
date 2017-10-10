@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_sessions
-		#so it won't need "authenticity key
+		#so it won't need "authenticity key"
 end
