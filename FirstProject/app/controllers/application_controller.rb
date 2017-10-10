@@ -1,11 +1,6 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery with: :null_sessions
 	require 'csv'
-	 def processCSVFile(file)
-    text_file = TextFile.new({name: file.original_filename, content: file.read})
-    text_file.save
-CSV.parse(text_file.content, converters: :numeric);
-
 	def sums
 		
 		sum = 0
@@ -55,16 +50,4 @@ CSV.parse(text_file.content, converters: :numeric);
 	end
 	end
 
-	Incomes_col = 0;
-	ColX = 0;    
-    def lin_regressions
-        arr = processCSVFile(params["file"]);
-        xs = (1..arr.length).to_a;
-        ys =  arr.map { |n| n[Incomes_col] };
-        linear = Regression::Linear.new(xs, ys);
-        a = linear.slope;
-        b = linear.intercept;
-        render plain: ('%.6f' % a + "," + '%.6f' %  b).html_safe;        
-	end
-end
 end
