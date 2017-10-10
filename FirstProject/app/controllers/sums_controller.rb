@@ -8,7 +8,7 @@ class SumsController < ApplicationController
 		CSV.foreach(doc.path) do |row|
       			sum += row.first.to_f
 		end
-
+		sum = sum.ceil
     render plain: '%.2f' % sum
   
 	end
